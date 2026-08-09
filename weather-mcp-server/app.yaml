@@ -1,0 +1,12 @@
+# Databricks App configuration for the Open-Meteo weather MCP server.
+#
+# This app only exposes MCP tools over HTTP - it has no UI and is not
+# meant to be opened directly in a browser. Deploy it from this folder
+# (weather-mcp-server/) as its own Databricks App, separate from the
+# weather-agent/ app.
+#
+# After deploying, copy this app's URL (shown on its Databricks Apps
+# page) with /mcp appended, and paste it into weather-agent/app.yaml's
+# WEATHER_MCP_SERVER_URL value.
+
+command: ["python", "open_meteo_mcp_server.py"]
