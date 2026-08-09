@@ -1,0 +1,25 @@
+# Databricks App configuration for the Weather Agent chat app (app.py).
+#
+# Deploy separately from the weather MCP server app - this app is the
+# agent/UI, the MCP server is just a tool provider it calls over HTTP.
+#
+# Required env vars:
+#   WEATHER_MCP_SERVER_URL  - deployed URL of the Open-Meteo weather MCP
+#                             server's MCP endpoint, e.g.
+#                             https://weather-mcp-server-<workspace>.databricksapps.com/mcp
+#   MODEL_SERVING_ENDPOINT  - name of a Databricks Foundation Model API
+#                             serving endpoint that supports tool calling
+#                             (default: databricks-claude-sonnet-4)
+#
+# Update the WEATHER_MCP_SERVER_URL value below after the MCP server app
+# is deployed and you have its real URL.
+
+command: ["streamlit", "run", "app.py"]
+
+env:
+  - name: "WEATHER_MCP_SERVER_URL"
+    value: "https://weather-mcp-server-<workspace>.databricksapps.com/mcp"
+  - name: "MODEL_SERVING_ENDPOINT"
+    value: "databricks-claude-sonnet-4"
+  - name: "MAX_TOOL_ROUNDS"
+    value: "5"
